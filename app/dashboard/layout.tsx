@@ -10,11 +10,12 @@ export default function DashboardLayout({
   const pathname = usePathname();
 
   const tabs = [
-    { id: "dashboard", label: "Dashboard", emoji: "🏠", path: "/dashboard" },
+    { id: "dashboard", label: "Hjem", emoji: "🏠", path: "/dashboard" },
     { id: "trening", label: "Trening", emoji: "💪", path: "/dashboard/trening" },
+    { id: "vekt", label: "Vekt", emoji: "⚖️", path: "/dashboard/vekt" },
     { id: "mat", label: "Mat", emoji: "🥗", path: "/dashboard/mat" },
     { id: "sovn", label: "Søvn", emoji: "😴", path: "/dashboard/sovn" },
-    { id: "ai", label: "AI Coach", emoji: "🤖", path: "/dashboard/ai" },
+    { id: "ai", label: "AI", emoji: "🤖", path: "/dashboard/ai" },
   ];
 
   return (
@@ -30,8 +31,8 @@ export default function DashboardLayout({
                   pathname === tab.path ? "text-blue-500" : "text-gray-400 hover:text-white"
                 }`}
               >
-                <span className="text-2xl">{tab.emoji}</span>
-                <span className="text-xs mt-1">{tab.label}</span>
+                <span className="text-xl">{tab.emoji}</span>
+                <span className="text-xs mt-0.5">{tab.label}</span>
               </button>
             </li>
           ))}
