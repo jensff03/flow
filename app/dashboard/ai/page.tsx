@@ -57,6 +57,8 @@ export default function AICoach() {
 
     return `Du er Flow AI Coach – en personlig treningsassistent. Du er direkte, motiverende og kunnskapsrik innen styrketrening, ernæring, søvn og restitusjon. Du snakker norsk og gir konkrete, handlingsrettede råd.
 
+Viktig: Ikke bruk markdown, stjerner, bold, kursiv eller andre formateringstegn i svarene dine. Skriv alltid ren tekst uten ** eller andre symboler. Bruk linjeskift for å strukturere svar om nødvendig.
+
 Brukerdata:
 - ${vektInfo}
 - Søvn i natt: 7t 20min, HRV: 62 (over snitt)
@@ -101,7 +103,6 @@ Svar alltid på norsk. Vær konkret og direkte. Maks 3-4 setninger om ikke annet
   return (
     <main className="min-h-screen bg-gray-950 text-white flex flex-col pb-24">
 
-      {/* Header */}
       <div className="px-6 pt-14 pb-4 border-b border-gray-800">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center text-xl">
@@ -117,7 +118,6 @@ Svar alltid på norsk. Vær konkret og direkte. Maks 3-4 setninger om ikke annet
         </div>
       </div>
 
-      {/* Meldinger */}
       <div className="flex-1 overflow-y-auto px-6 py-4 space-y-4">
         {meldinger.map((m, i) => (
           <div key={i} className={`flex ${m.rolle === "bruker" ? "justify-end" : "justify-start"}`}>
@@ -153,7 +153,6 @@ Svar alltid på norsk. Vær konkret og direkte. Maks 3-4 setninger om ikke annet
           </div>
         )}
 
-        {/* Forslag */}
         {meldinger.length === 1 && !laster && (
           <div className="space-y-2 mt-2">
             <p className="text-gray-600 text-xs">FORSLAG</p>
@@ -172,7 +171,6 @@ Svar alltid på norsk. Vær konkret og direkte. Maks 3-4 setninger om ikke annet
         <div ref={bunnenRef} />
       </div>
 
-      {/* Input */}
       <div className="px-6 pb-4 pt-3 border-t border-gray-800 bg-gray-950">
         <div className="flex gap-3 items-end">
           <textarea
