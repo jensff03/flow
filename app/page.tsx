@@ -1,65 +1,83 @@
-import Image from "next/image";
+"use client";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
-export default function Home() {
+export default function Landing() {
+  const router = useRouter();
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setVisible(true), 100);
+  }, []);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <main className="min-h-screen bg-gray-950 text-white flex flex-col items-center justify-center relative overflow-hidden px-6">
+      
+      {/* Bakgrunnsglød */}
+      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-blue-600 opacity-20 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-64 h-64 bg-purple-600 opacity-10 rounded-full blur-3xl pointer-events-none" />
+
+      {/* Logo */}
+      <div
+        className={`transition-all duration-700 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <h1 className="text-7xl font-black tracking-tight mb-2 text-center">
+          flow
+        </h1>
+        <div className="h-1 w-16 bg-blue-500 rounded-full mx-auto mb-8" />
+      </div>
+
+      {/* Tagline */}
+      <div
+        className={`transition-all duration-700 delay-200 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <p className="text-xl text-gray-300 text-center mb-4 font-medium">
+          Din personlige treningsassistent
+        </p>
+        <p className="text-gray-500 text-center text-sm max-w-xs mx-auto mb-12">
+          Samler alt fra Garmin, Whoop, Apple Health og Strong – og gir deg én oversikt med AI som forstår kroppen din.
+        </p>
+      </div>
+
+      {/* Features */}
+      <div
+        className={`transition-all duration-700 delay-300 grid grid-cols-3 gap-4 mb-12 w-full max-w-sm ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        {[
+          { emoji: "📊", label: "Alt på ett sted" },
+          { emoji: "🤖", label: "AI Coach" },
+          { emoji: "😴", label: "Søvn & restitusjon" },
+        ].map((f) => (
+          <div key={f.label} className="bg-gray-800 rounded-2xl p-4 flex flex-col items-center gap-2">
+            <span className="text-2xl">{f.emoji}</span>
+            <span className="text-xs text-gray-400 text-center">{f.label}</span>
+          </div>
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div
+        className={`transition-all duration-700 delay-500 w-full max-w-sm ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <button
+          onClick={() => router.push("/dashboard")}
+          className="w-full bg-blue-600 hover:bg-blue-500 active:scale-95 transition-all text-white font-bold py-4 rounded-2xl text-lg shadow-lg shadow-blue-900/40"
+        >
+          Kom i gang →
+        </button>
+        <p className="text-gray-600 text-xs text-center mt-4">
+          Gratis å prøve. Ingen kredittkort.
+        </p>
+      </div>
+
+    </main>
   );
 }
